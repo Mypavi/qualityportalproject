@@ -73,6 +73,7 @@
                                 <VBox class="demoSection" alignItems="Center">
                                     <Text text="Demo Credentials:" class="demoLabel" />
                                     <Text text="User ID: K901900 | Password: 12345" class="demoCredentials" />
+                                    <Text text="Click Login to see the Quality Management Dashboard" class="demoHint" />
                                 </VBox>
                                 
                             </VBox>
@@ -82,7 +83,7 @@
                     <!-- Footer -->
                     <VBox class="loginFooter" alignItems="Center">
                         <Text text="© 2025 SAP Quality Management Portal" class="footerText" />
-                        <Text text="Powered by SAP UI5 & Fiori Design" class="footerSubtext" />
+                        <Text text="Powered by SAP UI5 &amp; Fiori Design" class="footerSubtext" />
                     </VBox>
                     
                 </VBox>

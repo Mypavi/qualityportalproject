@@ -177,6 +177,13 @@
     border: 1px solid #e8eaed;
 }
 
+.demoHint {
+    color: #5f6368;
+    font-size: 0.75rem;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
 .loginFooter {
     margin-top: 2rem;
 }
