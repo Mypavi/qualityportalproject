@@ -31,10 +31,11 @@ sap.ui.define([
                 return;
             }
 
-            // Show loading
+            // Show loading with animation
             const oButton = this.byId("loginButton");
             oButton.setEnabled(false);
-            oButton.setText("Logging in...");
+            oButton.setText("Authenticating...");
+            oButton.addStyleClass("loadingButton");
 
             // Call login service using ServiceHelper
             ServiceHelper.authenticateUser(sUserId, sPassword, oLoginModel)
@@ -61,6 +62,7 @@ sap.ui.define([
                     // Reset button
                     oButton.setEnabled(true);
                     oButton.setText("Login");
+                    oButton.removeStyleClass("loadingButton");
                 });
         },
 

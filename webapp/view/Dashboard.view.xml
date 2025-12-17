@@ -12,8 +12,11 @@
             <Bar class="dashboardHeader">
                 <contentLeft>
                     <HBox alignItems="Center">
-                        <core:Icon src="sap-icon://quality-issue" size="2rem" color="white" class="headerIcon" />
-                        <Title text="Quality Management Portal" level="H3" class="headerTitle" />
+                        <core:Icon src="sap-icon://building" size="2rem" color="white" class="headerIcon" />
+                        <VBox class="headerBranding">
+                            <Title text="KAAR TECH" level="H3" class="headerCompany" />
+                            <Text text="Quality Management Portal" class="headerSystem" />
+                        </VBox>
                     </HBox>
                 </contentLeft>
                 <contentRight>

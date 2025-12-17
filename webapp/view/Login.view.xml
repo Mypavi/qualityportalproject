@@ -12,11 +12,17 @@
                 <!-- Main Login Container -->
                 <VBox class="loginContainer" alignItems="Center">
                     
-                    <!-- Header Section -->
+                    <!-- KAAR TECH Header Section -->
                     <VBox class="loginHeader" alignItems="Center">
-                        <core:Icon src="sap-icon://quality-issue" size="4rem" color="#0070f3" class="loginIcon" />
-                        <Title text="{i18n>appTitle}" level="H1" class="loginTitle" />
-                        <Text text="Quality Management System" class="loginSubtitle" />
+                        <VBox class="companyLogo" alignItems="Center">
+                            <core:Icon src="sap-icon://building" size="5rem" color="#ffffff" class="logoIcon" />
+                            <Title text="KAAR TECH" level="H1" class="companyName" />
+                            <Text text="TECHNOLOGIES PVT LTD" class="companySubtitle" />
+                        </VBox>
+                        <VBox class="systemInfo" alignItems="Center">
+                            <Title text="Quality Management Portal" level="H2" class="systemTitle" />
+                            <Text text="Enterprise Quality Control System" class="systemSubtitle" />
+                        </VBox>
                     </VBox>
                     
                     <!-- Login Card -->
@@ -26,8 +32,9 @@
                                 
                                 <!-- Welcome Message -->
                                 <VBox class="welcomeSection" alignItems="Center">
-                                    <Title text="Welcome Back" level="H2" class="welcomeTitle" />
-                                    <Text text="Please sign in to your account" class="welcomeText" />
+                                    <core:Icon src="sap-icon://employee" size="3rem" color="#1a73e8" class="welcomeIcon" />
+                                    <Title text="Employee Login" level="H2" class="welcomeTitle" />
+                                    <Text text="Access KAAR TECH Quality Management System" class="welcomeText" />
                                 </VBox>
                                 
                                 <!-- Login Form -->
@@ -69,21 +76,29 @@
                                               visible="false" 
                                               class="messageStrip" />
                                 
-                                <!-- Demo Credentials -->
-                                <VBox class="demoSection" alignItems="Center">
-                                    <Text text="Demo Credentials:" class="demoLabel" />
-                                    <Text text="User ID: K901900 | Password: 12345" class="demoCredentials" />
-                                    <Text text="Click Login to see the Quality Management Dashboard" class="demoHint" />
+                                <!-- Security Notice -->
+                                <VBox class="securitySection" alignItems="Center">
+                                    <HBox alignItems="Center" class="securityNotice">
+                                        <core:Icon src="sap-icon://shield" size="1rem" color="#28a745" class="securityIcon" />
+                                        <Text text="Secure Login - All sessions are encrypted" class="securityText" />
+                                    </HBox>
                                 </VBox>
                                 
                             </VBox>
                         </content>
                     </Panel>
                     
-                    <!-- Footer -->
+                    <!-- KAAR TECH Footer -->
                     <VBox class="loginFooter" alignItems="Center">
-                        <Text text="© 2025 SAP Quality Management Portal" class="footerText" />
-                        <Text text="Powered by SAP UI5 &amp; Fiori Design" class="footerSubtext" />
+                        <Text text="© 2025 KAAR TECH TECHNOLOGIES PVT LTD" class="footerText" />
+                        <Text text="Powered by SAP UI5 Enterprise Platform" class="footerSubtext" />
+                        <HBox class="contactInfo" alignItems="Center">
+                            <core:Icon src="sap-icon://phone" size="0.8rem" color="rgba(255,255,255,0.7)" />
+                            <Text text="+91-XXX-XXX-XXXX" class="contactText" />
+                            <Text text="|" class="separator" />
+                            <core:Icon src="sap-icon://email" size="0.8rem" color="rgba(255,255,255,0.7)" />
+                            <Text text="support@kaartech.com" class="contactText" />
+                        </HBox>
                     </VBox>
                     
                 </VBox>
