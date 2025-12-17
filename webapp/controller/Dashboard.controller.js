@@ -42,11 +42,23 @@ sap.ui.define([
                     const oMetricsModel = new JSONModel(oMetrics);
                     this.getView().setModel(oMetricsModel, "metrics");
                     
-                    MessageToast.show("Inspection data loaded successfully");
+                    MessageToast.show(`Loaded ${oData.results ? oData.results.length : 0} inspection lots`);
                 })
                 .catch((oError) => {
-                    MessageToast.show("Failed to load inspection data");
+                    MessageToast.show("Failed to load inspection data. Please check your connection.");
                     console.error("Inspection data error:", oError);
+                    
+                    // Set empty model to prevent binding errors
+                    const oEmptyModel = new JSONModel({ results: [] });
+                    this.getView().setModel(oEmptyModel, "inspection");
+                    
+                    const oEmptyMetrics = new JSONModel({
+                        totalLots: 0,
+                        pendingLots: 0,
+                        approvedLots: 0,
+                        rejectedLots: 0
+                    });
+                    this.getView().setModel(oEmptyMetrics, "metrics");
                 });
         },
 
@@ -57,11 +69,15 @@ sap.ui.define([
                 .then((oData) => {
                     const oModel = new JSONModel(oData);
                     this.getView().setModel(oModel, "result");
-                    MessageToast.show("Result data loaded successfully");
+                    MessageToast.show(`Loaded ${oData.results ? oData.results.length : 0} result records`);
                 })
                 .catch((oError) => {
-                    MessageToast.show("Failed to load result data");
+                    MessageToast.show("Failed to load result data. Please check your connection.");
                     console.error("Result data error:", oError);
+                    
+                    // Set empty model to prevent binding errors
+                    const oEmptyModel = new JSONModel({ results: [] });
+                    this.getView().setModel(oEmptyModel, "result");
                 });
         },
 
@@ -72,11 +88,15 @@ sap.ui.define([
                 .then((oData) => {
                     const oModel = new JSONModel(oData);
                     this.getView().setModel(oModel, "usage");
-                    MessageToast.show("Usage data loaded successfully");
+                    MessageToast.show(`Loaded ${oData.results ? oData.results.length : 0} usage decisions`);
                 })
                 .catch((oError) => {
-                    MessageToast.show("Failed to load usage data");
+                    MessageToast.show("Failed to load usage data. Please check your connection.");
                     console.error("Usage data error:", oError);
+                    
+                    // Set empty model to prevent binding errors
+                    const oEmptyModel = new JSONModel({ results: [] });
+                    this.getView().setModel(oEmptyModel, "usage");
                 });
         },
 

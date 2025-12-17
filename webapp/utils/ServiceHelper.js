@@ -8,14 +8,7 @@ sap.ui.define([
         authenticateUser: function(sUserId, sPassword, oModel) {
             var that = this;
             return new Promise(function(resolve, reject) {
-                if (sUserId === "K901900" && sPassword === "12345") {
-                    resolve({
-                        bname: sUserId,
-                        password: sPassword
-                    });
-                    return;
-                }
-                
+                // Always use real service for authentication
                 if (!oModel) {
                     reject(new Error("Login service not available"));
                     return;
@@ -25,7 +18,12 @@ sap.ui.define([
                 
                 oModel.read(sPath, {
                     success: function(oData) {
-                        resolve(oData);
+                        // Check if authentication was successful
+                        if (oData && oData.bname) {
+                            resolve(oData);
+                        } else {
+                            reject(new Error("Invalid credentials"));
+                        }
                     },
                     error: function(oError) {
                         reject(oError);
@@ -38,16 +36,27 @@ sap.ui.define([
             var that = this;
             return new Promise(function(resolve, reject) {
                 if (!oModel) {
-                    resolve(that._getDemoInspectionData());
+                    reject(new Error("Inspection service not available"));
                     return;
                 }
                 
                 oModel.read("/ZQM_INSPECT_PR", {
+                    urlParameters: {
+                        "$format": "json"
+                    },
                     success: function(oData) {
-                        resolve(oData);
+                        // Ensure we have the results array
+                        if (oData && oData.results) {
+                            resolve(oData);
+                        } else if (oData && Array.isArray(oData)) {
+                            resolve({ results: oData });
+                        } else {
+                            resolve({ results: [] });
+                        }
                     },
                     error: function(oError) {
-                        resolve(that._getDemoInspectionData());
+                        console.error("Failed to load inspection data:", oError);
+                        reject(oError);
                     }
                 });
             });
@@ -57,16 +66,27 @@ sap.ui.define([
             var that = this;
             return new Promise(function(resolve, reject) {
                 if (!oModel) {
-                    resolve(that._getDemoResultData());
+                    reject(new Error("Result service not available"));
                     return;
                 }
                 
                 oModel.read("/ZQM_RESULT_PR", {
+                    urlParameters: {
+                        "$format": "json"
+                    },
                     success: function(oData) {
-                        resolve(oData);
+                        // Ensure we have the results array
+                        if (oData && oData.results) {
+                            resolve(oData);
+                        } else if (oData && Array.isArray(oData)) {
+                            resolve({ results: oData });
+                        } else {
+                            resolve({ results: [] });
+                        }
                     },
                     error: function(oError) {
-                        resolve(that._getDemoResultData());
+                        console.error("Failed to load result data:", oError);
+                        reject(oError);
                     }
                 });
             });
@@ -76,16 +96,27 @@ sap.ui.define([
             var that = this;
             return new Promise(function(resolve, reject) {
                 if (!oModel) {
-                    resolve(that._getDemoUsageData());
+                    reject(new Error("Usage service not available"));
                     return;
                 }
                 
                 oModel.read("/ZQM_US_PR", {
+                    urlParameters: {
+                        "$format": "json"
+                    },
                     success: function(oData) {
-                        resolve(oData);
+                        // Ensure we have the results array
+                        if (oData && oData.results) {
+                            resolve(oData);
+                        } else if (oData && Array.isArray(oData)) {
+                            resolve({ results: oData });
+                        } else {
+                            resolve({ results: [] });
+                        }
                     },
                     error: function(oError) {
-                        resolve(that._getDemoUsageData());
+                        console.error("Failed to load usage data:", oError);
+                        reject(oError);
                     }
                 });
             });
@@ -126,142 +157,31 @@ sap.ui.define([
             return metrics;
         },
 
-        _getDemoInspectionData: function() {
-            return {
-                results: [
-                    {
-                        InspectionLotNumber: "50000000010",
-                        Plant: "0001",
-                        PlantDescription: "werk_01",
-                        LotOrigin: "05",
-                        ActualQuantity: "28.000",
-                        InspectedQuantity: "10.000",
-                        UsageDecisionCode: "R",
-                        SelectedMaterial: "34",
-                        UnitOfMeasure: "EA",
-                        UsageDecisionStatus: "Decision Made"
-                    },
-                    {
-                        InspectionLotNumber: "30000000001",
-                        Plant: "0001",
-                        PlantDescription: "werk_01",
-                        LotOrigin: "03",
-                        ActualQuantity: "1.000",
-                        InspectedQuantity: "0.000",
-                        UsageDecisionCode: "",
-                        SelectedMaterial: "34",
-                        UnitOfMeasure: "EA",
-                        UsageDecisionStatus: "Pending"
-                    },
-                    {
-                        InspectionLotNumber: "50000000002",
-                        Plant: "0001",
-                        PlantDescription: "werk_01",
-                        LotOrigin: "05",
-                        ActualQuantity: "10.000",
-                        InspectedQuantity: "10.000",
-                        UsageDecisionCode: "A",
-                        SelectedMaterial: "35",
-                        UnitOfMeasure: "PC",
-                        UsageDecisionStatus: "Decision Made"
-                    },
-                    {
-                        InspectionLotNumber: "10000000001",
-                        Plant: "0001",
-                        PlantDescription: "werk_01",
-                        LotOrigin: "01",
-                        ActualQuantity: "10.000",
-                        InspectedQuantity: "10.000",
-                        UsageDecisionCode: "A",
-                        SelectedMaterial: "MEMORY CARD",
-                        UnitOfMeasure: "PC",
-                        UsageDecisionStatus: "Decision Made"
-                    },
-                    {
-                        InspectionLotNumber: "30000000002",
-                        Plant: "0001",
-                        PlantDescription: "werk_01",
-                        LotOrigin: "03",
-                        ActualQuantity: "1.000",
-                        InspectedQuantity: "0.000",
-                        UsageDecisionCode: "",
-                        SelectedMaterial: "34",
-                        UnitOfMeasure: "EA",
-                        UsageDecisionStatus: "Pending"
-                    }
-                ]
-            };
+        // Helper method to format date from SAP format
+        formatSAPDate: function(sDate) {
+            if (!sDate) return "";
+            
+            try {
+                // Handle different date formats from SAP
+                if (sDate.indexOf("/Date(") !== -1) {
+                    // Extract timestamp from /Date(timestamp)/
+                    var timestamp = parseInt(sDate.replace(/\/Date\((\d+)\)\//, "$1"));
+                    return new Date(timestamp).toLocaleDateString();
+                } else if (sDate.indexOf("T") !== -1) {
+                    // ISO format
+                    return new Date(sDate).toLocaleDateString();
+                } else {
+                    return sDate;
+                }
+            } catch (e) {
+                return sDate;
+            }
         },
 
-        _getDemoResultData: function() {
-            return {
-                results: [
-                    {
-                        InspectionLotNumber: "50000000002",
-                        PlantCode: "0001",
-                        InspectorName: "TRAINEE",
-                        RecordedDate: "2025-06-24T00:00:00",
-                        UsageDecisionCode: "A",
-                        StockCode: "100",
-                        ResultCategory: "Unrestricted Stock",
-                        RecordingStatus: "View Only"
-                    },
-                    {
-                        InspectionLotNumber: "30000000017",
-                        PlantCode: "0001",
-                        InspectorName: "TRAINEE",
-                        RecordedDate: "2025-06-24T00:00:00",
-                        UsageDecisionCode: "R",
-                        StockCode: "1",
-                        ResultCategory: "Block Stock",
-                        RecordingStatus: "View Only"
-                    },
-                    {
-                        InspectionLotNumber: "10000000001",
-                        PlantCode: "0001",
-                        InspectorName: "TRAINEE",
-                        RecordedDate: "2025-11-17T00:00:00",
-                        UsageDecisionCode: "A",
-                        StockCode: "100",
-                        ResultCategory: "Unrestricted Stock",
-                        RecordingStatus: "View Only"
-                    }
-                ]
-            };
-        },
-
-        _getDemoUsageData: function() {
-            return {
-                results: [
-                    {
-                        InspectionLotNumber: "50000000010",
-                        Plant: "0001",
-                        LotQuantity: "28.000",
-                        InspectedQuantity: "10.000",
-                        UsageDecisionCode: "R",
-                        DecisionStatus: "Blocked",
-                        DecisionMessage: "Cannot proceed"
-                    },
-                    {
-                        InspectionLotNumber: "50000000002",
-                        Plant: "0001",
-                        LotQuantity: "10.000",
-                        InspectedQuantity: "10.000",
-                        UsageDecisionCode: "A",
-                        DecisionStatus: "Allowed",
-                        DecisionMessage: "Checked"
-                    },
-                    {
-                        InspectionLotNumber: "30000000001",
-                        Plant: "0001",
-                        LotQuantity: "1.000",
-                        InspectedQuantity: "0.000",
-                        UsageDecisionCode: "",
-                        DecisionStatus: "Blocked",
-                        DecisionMessage: "Cannot proceed"
-                    }
-                ]
-            };
+        // Helper method to format numbers
+        formatQuantity: function(sQuantity) {
+            if (!sQuantity) return "0";
+            return parseFloat(sQuantity).toFixed(3);
         }
     };
 });

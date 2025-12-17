@@ -107,7 +107,7 @@
                                     <f:content>
                                         <VBox class="tableContainer">
                                             <Toolbar class="tableToolbar">
-                                                <Title text="Inspection Lots ({inspection>/ZQM_INSPECT_PR/length})" class="tableTitle" />
+                                                <Title text="Inspection Lots ({inspection>/results/length})" class="tableTitle" />
                                                 <ToolbarSpacer />
                                                 <SearchField width="200px" placeholder="Search lots..." class="searchField" />
                                                 <Button text="Refresh" 
@@ -118,12 +118,13 @@
                                             </Toolbar>
                                             
                                             <Table id="inspectionTable" 
-                                                   items="{inspection>/ZQM_INSPECT_PR}"
+                                                   items="{inspection>/results}"
                                                    growing="true"
                                                    growingThreshold="20"
                                                    mode="SingleSelection"
                                                    selectionChange="onInspectionSelect"
-                                                   class="modernTable">
+                                                   class="modernTable"
+                                                   noDataText="No inspection lots available. Click Refresh to load data.">
                                                 <columns>
                                                     <Column width="12rem">
                                                         <Text text="Lot Number" class="columnHeader" />
@@ -194,7 +195,7 @@
                                     <f:content>
                                         <VBox class="tableContainer">
                                             <Toolbar class="tableToolbar">
-                                                <Title text="Result Records ({result>/ZQM_RESULT_PR/length})" class="tableTitle" />
+                                                <Title text="Result Records ({result>/results/length})" class="tableTitle" />
                                                 <ToolbarSpacer />
                                                 <SearchField width="200px" placeholder="Search results..." class="searchField" />
                                                 <Button text="Refresh" 
@@ -205,10 +206,11 @@
                                             </Toolbar>
                                             
                                             <Table id="resultTable" 
-                                                   items="{result>/ZQM_RESULT_PR}"
+                                                   items="{result>/results}"
                                                    growing="true"
                                                    growingThreshold="20"
-                                                   class="modernTable">
+                                                   class="modernTable"
+                                                   noDataText="No result records available. Click Refresh to load data.">
                                                 <columns>
                                                     <Column width="12rem">
                                                         <Text text="Lot Number" class="columnHeader" />
@@ -279,7 +281,7 @@
                                     <f:content>
                                         <VBox class="tableContainer">
                                             <Toolbar class="tableToolbar">
-                                                <Title text="Usage Decisions ({usage>/ZQM_US_PR/length})" class="tableTitle" />
+                                                <Title text="Usage Decisions ({usage>/results/length})" class="tableTitle" />
                                                 <ToolbarSpacer />
                                                 <SearchField width="200px" placeholder="Search decisions..." class="searchField" />
                                                 <Button text="Refresh" 
@@ -290,10 +292,11 @@
                                             </Toolbar>
                                             
                                             <Table id="usageTable" 
-                                                   items="{usage>/ZQM_US_PR}"
+                                                   items="{usage>/results}"
                                                    growing="true"
                                                    growingThreshold="20"
-                                                   class="modernTable">
+                                                   class="modernTable"
+                                                   noDataText="No usage decisions available. Click Refresh to load data.">
                                                 <columns>
                                                     <Column width="12rem">
                                                         <Text text="Lot Number" class="columnHeader" />

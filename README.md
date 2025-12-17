@@ -103,12 +103,30 @@ The application follows SAP UI5 best practices and integrates with multiple ODat
    - Validate decision codes (A=Approved, R=Rejected, R2=Rework)
    - Ensure quantity consistency checks
 
+## Real SAP Data Integration
+
+This application is now configured to work with **real SAP OData services** instead of mock data:
+
+### SAP Backend Configuration
+- **Server**: `http://172.17.19.24:8000`
+- **Real Data**: 50+ inspection lots, result records, and usage decisions
+- **Live Authentication**: Direct SAP system validation
+- **Real-time Updates**: Data refreshed from SAP backend
+
+### Verified Test Data
+The application has been tested with real SAP data including:
+- **Inspection Lots**: 50+ records across multiple plants (0001, 1003, 1008)
+- **Materials**: Memory Cards, Raw Materials, Finished Materials
+- **Decision Codes**: A (Approved), R (Rejected), R2 (Rework)
+- **Inspectors**: TRAINEE, K901464
+- **Plants**: werk_01, MK, SW
+
 ## Installation & Setup
 
 ### Prerequisites
 - Node.js (v14 or higher)
 - npm or yarn package manager
-- SAP system with configured OData services
+- Access to SAP system at `http://172.17.19.24:8000`
 
 ### Installation Steps
 
@@ -128,11 +146,14 @@ The application follows SAP UI5 best practices and integrates with multiple ODat
    ```bash
    npm start
    ```
+   
+   Or use the provided startup scripts:
+   - **Windows**: `start.bat`
+   - **Linux/Mac**: `./start.sh`
 
-4. **Start with mock data** (for development):
-   ```bash
-   npm run start-mock
-   ```
+4. **Access the application**:
+   - Open browser to `http://localhost:8080`
+   - Login with SAP credentials (test: K901900 / 12345)
 
 ## Usage Guide
 
