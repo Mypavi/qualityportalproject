@@ -302,6 +302,118 @@ sap.ui.define([
             MessageToast.show("Logged out successfully");
         },
 
+        // New formatter functions for enhanced UI
+        formatUsageDecisionText(sCode) {
+            switch (sCode) {
+                case "A":
+                    return "Approved";
+                case "R":
+                    return "Rejected";
+                case "R2":
+                    return "Rework";
+                case "":
+                case null:
+                case undefined:
+                    return "Pending";
+                default:
+                    return sCode || "Pending";
+            }
+        },
+
+        getDecisionIcon(sCode) {
+            switch (sCode) {
+                case "A":
+                    return "sap-icon://accept";
+                case "R":
+                case "R2":
+                    return "sap-icon://decline";
+                default:
+                    return "sap-icon://pending";
+            }
+        },
+
+        getDecisionIconColor(sCode) {
+            switch (sCode) {
+                case "A":
+                    return "Accent6"; // Green
+                case "R":
+                case "R2":
+                    return "Accent2"; // Red
+                default:
+                    return "Accent3"; // Orange
+            }
+        },
+
+        calculateInspectionProgress(oLot) {
+            if (!oLot) return 0;
+            
+            const actualQty = parseFloat(oLot.ActualQuantity) || 0;
+            const inspectedQty = parseFloat(oLot.InspectedQuantity) || 0;
+            
+            if (actualQty === 0) return 0;
+            
+            const progress = (inspectedQty / actualQty) * 100;
+            return Math.min(progress, 100);
+        },
+
+        getProgressText(oLot) {
+            if (!oLot) return "0%";
+            
+            const actualQty = parseFloat(oLot.ActualQuantity) || 0;
+            const inspectedQty = parseFloat(oLot.InspectedQuantity) || 0;
+            
+            if (actualQty === 0) return "0%";
+            
+            const progress = (inspectedQty / actualQty) * 100;
+            return Math.min(progress, 100).toFixed(1) + "%";
+        },
+
+        getProgressState(sStatus) {
+            switch (sStatus) {
+                case "Decision Made":
+                    return "Success";
+                case "Pending":
+                    return "Warning";
+                default:
+                    return "Information";
+            }
+        },
+
+        calculatePendingPercentage(iPendingLots) {
+            const oMetrics = this.getView().getModel("metrics");
+            if (!oMetrics) return 0;
+            
+            const iTotalLots = oMetrics.getProperty("/totalLots") || 1;
+            return (iPendingLots / iTotalLots) * 100;
+        },
+
+        calculateApprovedPercentage(iApprovedLots) {
+            const oMetrics = this.getView().getModel("metrics");
+            if (!oMetrics) return 0;
+            
+            const iTotalLots = oMetrics.getProperty("/totalLots") || 1;
+            return (iApprovedLots / iTotalLots) * 100;
+        },
+
+        calculateRejectedPercentage(iRejectedLots) {
+            const oMetrics = this.getView().getModel("metrics");
+            if (!oMetrics) return 0;
+            
+            const iTotalLots = oMetrics.getProperty("/totalLots") || 1;
+            return (iRejectedLots / iTotalLots) * 100;
+        },
+
+        getUsageStatusColor(sStatus) {
+            switch (sStatus) {
+                case "Allowed":
+                    return "Accent6"; // Green
+                case "Blocked":
+                    return "Accent2"; // Red
+                default:
+                    return "Accent3"; // Orange
+            }
+        },
+
         getRouter() {
             return this.getOwnerComponent().getRouter();
         }

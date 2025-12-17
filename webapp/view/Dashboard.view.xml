@@ -35,57 +35,100 @@
         <content>
             <VBox class="dashboardContent">
                 
-                <!-- Quality Metrics Cards -->
-                <HBox class="metricsContainer" justifyContent="SpaceAround">
+                <!-- Animated Quality Metrics Cards -->
+                <HBox class="metricsContainer animatedContainer" justifyContent="SpaceAround">
                     
-                    <f:Card class="metricCard totalCard" width="240px">
+                    <!-- Total Lots Card -->
+                    <f:Card class="metricCard totalCard animatedCard" width="280px">
                         <f:header>
-                            <card:Header title="Total Lots" />
+                            <card:Header title="Total Lots" 
+                                       iconSrc="sap-icon://inspection"
+                                       iconDisplayShape="Circle"
+                                       iconBackgroundColor="Accent1" />
                         </f:header>
                         <f:content>
-                            <VBox alignItems="Center" class="cardContent">
-                                <core:Icon src="sap-icon://inspection" size="3rem" color="#0070f3" />
-                                <Text text="{metrics>/totalLots}" class="metricNumber" />
-                                <Text text="Inspection Lots" class="metricDescription" />
+                            <VBox alignItems="Center" class="cardContent gradientCard totalGradient">
+                                <HBox alignItems="Center" class="metricHeader">
+                                    <core:Icon src="sap-icon://inspection" size="4rem" color="#ffffff" class="pulsingIcon" />
+                                    <VBox class="metricInfo">
+                                        <Text text="{metrics>/totalLots}" class="metricNumber whiteText animatedNumber" />
+                                        <Text text="Inspection Lots" class="metricDescription whiteText" />
+                                    </VBox>
+                                </HBox>
+                                <ProgressIndicator percentValue="100" displayValue="Active" 
+                                                 state="Success" class="metricProgress" />
                             </VBox>
                         </f:content>
                     </f:Card>
                     
-                    <f:Card class="metricCard pendingCard" width="240px">
+                    <!-- Pending Card -->
+                    <f:Card class="metricCard pendingCard animatedCard" width="280px">
                         <f:header>
-                            <card:Header title="Pending" />
+                            <card:Header title="Pending" 
+                                       iconSrc="sap-icon://pending"
+                                       iconDisplayShape="Circle"
+                                       iconBackgroundColor="Accent3" />
                         </f:header>
                         <f:content>
-                            <VBox alignItems="Center" class="cardContent">
-                                <core:Icon src="sap-icon://pending" size="3rem" color="#e9730c" />
-                                <Text text="{metrics>/pendingLots}" class="metricNumber" />
-                                <Text text="Awaiting Decision" class="metricDescription" />
+                            <VBox alignItems="Center" class="cardContent gradientCard pendingGradient">
+                                <HBox alignItems="Center" class="metricHeader">
+                                    <core:Icon src="sap-icon://pending" size="4rem" color="#ffffff" class="rotatingIcon" />
+                                    <VBox class="metricInfo">
+                                        <Text text="{metrics>/pendingLots}" class="metricNumber whiteText animatedNumber" />
+                                        <Text text="Awaiting Decision" class="metricDescription whiteText" />
+                                    </VBox>
+                                </HBox>
+                                <ProgressIndicator percentValue="{path: 'metrics>/pendingLots', formatter: '.calculatePendingPercentage'}" 
+                                                 displayValue="In Progress" 
+                                                 state="Warning" class="metricProgress" />
                             </VBox>
                         </f:content>
                     </f:Card>
                     
-                    <f:Card class="metricCard approvedCard" width="240px">
+                    <!-- Approved Card -->
+                    <f:Card class="metricCard approvedCard animatedCard" width="280px">
                         <f:header>
-                            <card:Header title="Approved" />
+                            <card:Header title="Approved" 
+                                       iconSrc="sap-icon://accept"
+                                       iconDisplayShape="Circle"
+                                       iconBackgroundColor="Accent6" />
                         </f:header>
                         <f:content>
-                            <VBox alignItems="Center" class="cardContent">
-                                <core:Icon src="sap-icon://accept" size="3rem" color="#107e3e" />
-                                <Text text="{metrics>/approvedLots}" class="metricNumber" />
-                                <Text text="Quality Passed" class="metricDescription" />
+                            <VBox alignItems="Center" class="cardContent gradientCard approvedGradient">
+                                <HBox alignItems="Center" class="metricHeader">
+                                    <core:Icon src="sap-icon://accept" size="4rem" color="#ffffff" class="bouncingIcon" />
+                                    <VBox class="metricInfo">
+                                        <Text text="{metrics>/approvedLots}" class="metricNumber whiteText animatedNumber" />
+                                        <Text text="Quality Passed" class="metricDescription whiteText" />
+                                    </VBox>
+                                </HBox>
+                                <ProgressIndicator percentValue="{path: 'metrics>/approvedLots', formatter: '.calculateApprovedPercentage'}" 
+                                                 displayValue="Approved" 
+                                                 state="Success" class="metricProgress" />
                             </VBox>
                         </f:content>
                     </f:Card>
                     
-                    <f:Card class="metricCard rejectedCard" width="240px">
+                    <!-- Rejected Card -->
+                    <f:Card class="metricCard rejectedCard animatedCard" width="280px">
                         <f:header>
-                            <card:Header title="Rejected" />
+                            <card:Header title="Rejected" 
+                                       iconSrc="sap-icon://decline"
+                                       iconDisplayShape="Circle"
+                                       iconBackgroundColor="Accent2" />
                         </f:header>
                         <f:content>
-                            <VBox alignItems="Center" class="cardContent">
-                                <core:Icon src="sap-icon://decline" size="3rem" color="#bb0000" />
-                                <Text text="{metrics>/rejectedLots}" class="metricNumber" />
-                                <Text text="Quality Failed" class="metricDescription" />
+                            <VBox alignItems="Center" class="cardContent gradientCard rejectedGradient">
+                                <HBox alignItems="Center" class="metricHeader">
+                                    <core:Icon src="sap-icon://decline" size="4rem" color="#ffffff" class="shakingIcon" />
+                                    <VBox class="metricInfo">
+                                        <Text text="{metrics>/rejectedLots}" class="metricNumber whiteText animatedNumber" />
+                                        <Text text="Quality Failed" class="metricDescription whiteText" />
+                                    </VBox>
+                                </HBox>
+                                <ProgressIndicator percentValue="{path: 'metrics>/rejectedLots', formatter: '.calculateRejectedPercentage'}" 
+                                                 displayValue="Rejected" 
+                                                 state="Error" class="metricProgress" />
                             </VBox>
                         </f:content>
                     </f:Card>
@@ -99,253 +142,347 @@
                     <items>
                         <IconTabFilter text="Inspection Lots" icon="sap-icon://inspection" key="inspectionLots" iconColor="Positive">
                             <content>
-                                <f:Card class="contentCard">
-                                    <f:header>
-                                        <card:Header title="Inspection Lots Management" 
-                                                   subtitle="Monitor and manage quality inspection lots" />
-                                    </f:header>
-                                    <f:content>
-                                        <VBox class="tableContainer">
-                                            <Toolbar class="tableToolbar">
-                                                <Title text="Inspection Lots ({inspection>/results/length})" class="tableTitle" />
+                                <VBox class="inspectionContainer">
+                                    <!-- Header Section -->
+                                    <f:Card class="headerCard animatedCard">
+                                        <f:header>
+                                            <card:Header title="Inspection Lots Management" 
+                                                       subtitle="Monitor and manage quality inspection lots"
+                                                       iconSrc="sap-icon://inspection"
+                                                       iconDisplayShape="Circle"
+                                                       iconBackgroundColor="Accent1" />
+                                        </f:header>
+                                        <f:content>
+                                            <Toolbar class="modernToolbar">
+                                                <Title text="Inspection Lots ({inspection>/results/length})" class="toolbarTitle" />
                                                 <ToolbarSpacer />
-                                                <SearchField width="200px" placeholder="Search lots..." class="searchField" />
+                                                <SearchField width="250px" placeholder="Search lots..." class="modernSearchField" />
                                                 <Button text="Refresh" 
                                                         icon="sap-icon://refresh" 
                                                         press="onRefreshInspection"
-                                                        type="Transparent"
-                                                        class="refreshButton" />
+                                                        type="Emphasized"
+                                                        class="modernRefreshButton" />
                                             </Toolbar>
-                                            
-                                            <Table id="inspectionTable" 
-                                                   items="{inspection>/results}"
-                                                   growing="true"
-                                                   growingThreshold="20"
-                                                   mode="SingleSelection"
-                                                   selectionChange="onInspectionSelect"
-                                                   class="modernTable"
-                                                   noDataText="No inspection lots available. Click Refresh to load data.">
-                                                <columns>
-                                                    <Column width="12rem">
-                                                        <Text text="Lot Number" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="15rem">
-                                                        <Text text="Plant" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="12rem">
-                                                        <Text text="Material" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="10rem">
-                                                        <Text text="Actual Qty" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="10rem">
-                                                        <Text text="Inspected Qty" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="8rem">
-                                                        <Text text="Decision" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="10rem">
-                                                        <Text text="Status" class="columnHeader" />
-                                                    </Column>
-                                                </columns>
-                                                <items>
-                                                    <ColumnListItem press="onInspectionItemPress" class="tableRow">
-                                                        <cells>
-                                                            <VBox>
-                                                                <Text text="{inspection>InspectionLotNumber}" class="lotNumber" />
-                                                                <Text text="Origin: {inspection>LotOrigin}" class="lotOrigin" />
+                                        </f:content>
+                                    </f:Card>
+                                    
+                                    <!-- Tile View for Inspection Lots -->
+                                    <VBox class="tilesContainer">
+                                        <List items="{inspection>/results}" 
+                                              class="inspectionTilesList"
+                                              noDataText="No inspection lots available. Click Refresh to load data.">
+                                            <CustomListItem press="onInspectionItemPress" class="inspectionTile animatedTile">
+                                                <content>
+                                                    <f:Card class="lotCard">
+                                                        <f:header>
+                                                            <card:Header title="{inspection>InspectionLotNumber}"
+                                                                       subtitle="Lot Origin: {inspection>LotOrigin}"
+                                                                       iconSrc="sap-icon://product"
+                                                                       iconDisplayShape="Circle"
+                                                                       iconBackgroundColor="{path: 'inspection>UsageDecisionCode', formatter: '.getDecisionIconColor'}" />
+                                                        </f:header>
+                                                        <f:content>
+                                                            <VBox class="lotCardContent">
+                                                                <!-- Plant and Material Info -->
+                                                                <HBox class="infoRow" justifyContent="SpaceBetween">
+                                                                    <VBox class="plantInfo">
+                                                                        <Label text="Plant:" class="infoLabel" />
+                                                                        <HBox alignItems="Center">
+                                                                            <core:Icon src="sap-icon://factory" size="1rem" color="#1a73e8" class="infoIcon" />
+                                                                            <VBox>
+                                                                                <Text text="{inspection>Plant}" class="plantCode" />
+                                                                                <Text text="{inspection>PlantDescription}" class="plantDescription" />
+                                                                            </VBox>
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                    <VBox class="materialInfo">
+                                                                        <Label text="Material:" class="infoLabel" />
+                                                                        <HBox alignItems="Center">
+                                                                            <core:Icon src="sap-icon://product" size="1rem" color="#34a853" class="infoIcon" />
+                                                                            <Text text="{inspection>SelectedMaterial}" class="materialText" />
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                </HBox>
+                                                                
+                                                                <!-- Quantity Information -->
+                                                                <HBox class="quantityRow" justifyContent="SpaceBetween">
+                                                                    <VBox class="quantityBox actualQty">
+                                                                        <Label text="Actual Quantity:" class="quantityLabel" />
+                                                                        <HBox alignItems="Center">
+                                                                            <core:Icon src="sap-icon://measuring-point" size="1rem" color="#f9ab00" />
+                                                                            <Text text="{inspection>ActualQuantity}" class="quantityValue" />
+                                                                            <Text text="{inspection>UnitOfMeasure}" class="unitText" />
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                    <VBox class="quantityBox inspectedQty">
+                                                                        <Label text="Inspected Quantity:" class="quantityLabel" />
+                                                                        <HBox alignItems="Center">
+                                                                            <core:Icon src="sap-icon://quality-issue" size="1rem" color="#ea4335" />
+                                                                            <Text text="{inspection>InspectedQuantity}" class="quantityValue" />
+                                                                            <Text text="{inspection>UnitOfMeasure}" class="unitText" />
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                </HBox>
+                                                                
+                                                                <!-- Decision and Status -->
+                                                                <HBox class="statusRow" justifyContent="SpaceBetween" alignItems="Center">
+                                                                    <VBox class="decisionInfo">
+                                                                        <Label text="Usage Decision:" class="statusLabel" />
+                                                                        <HBox alignItems="Center" class="decisionBox">
+                                                                            <ObjectStatus text="{path: 'inspection>UsageDecisionCode', formatter: '.formatUsageDecisionText'}" 
+                                                                                         state="{path: 'inspection>UsageDecisionCode', formatter: '.formatDecisionCode'}"
+                                                                                         icon="{path: 'inspection>UsageDecisionCode', formatter: '.getDecisionIcon'}"
+                                                                                         class="decisionStatus animatedStatus" />
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                    <VBox class="statusInfo">
+                                                                        <Label text="Lot Status:" class="statusLabel" />
+                                                                        <ObjectStatus text="{inspection>UsageDecisionStatus}" 
+                                                                                     state="{path: 'inspection>UsageDecisionStatus', formatter: '.formatStatus'}"
+                                                                                     icon="{path: 'inspection>UsageDecisionStatus', formatter: '.getStatusIcon'}"
+                                                                                     class="lotStatus animatedStatus" />
+                                                                    </VBox>
+                                                                </HBox>
+                                                                
+                                                                <!-- Progress Bar -->
+                                                                <VBox class="progressSection">
+                                                                    <Label text="Inspection Progress:" class="progressLabel" />
+                                                                    <ProgressIndicator percentValue="{path: 'inspection>', formatter: '.calculateInspectionProgress'}" 
+                                                                                     displayValue="{path: 'inspection>', formatter: '.getProgressText'}"
+                                                                                     state="{path: 'inspection>UsageDecisionStatus', formatter: '.getProgressState'}"
+                                                                                     class="inspectionProgress animatedProgress" />
+                                                                </VBox>
                                                             </VBox>
-                                                            <VBox>
-                                                                <Text text="{inspection>Plant}" class="plantCode" />
-                                                                <Text text="{inspection>PlantDescription}" class="plantDescription" />
-                                                            </VBox>
-                                                            <Text text="{inspection>SelectedMaterial}" class="materialText" />
-                                                            <VBox>
-                                                                <Text text="{inspection>ActualQuantity}" class="quantityValue" />
-                                                                <Text text="{inspection>UnitOfMeasure}" class="unitText" />
-                                                            </VBox>
-                                                            <VBox>
-                                                                <Text text="{inspection>InspectedQuantity}" class="quantityValue" />
-                                                                <Text text="{inspection>UnitOfMeasure}" class="unitText" />
-                                                            </VBox>
-                                                            <ObjectStatus text="{inspection>UsageDecisionCode}" 
-                                                                         state="{path: 'inspection>UsageDecisionCode', formatter: '.formatDecisionCode'}"
-                                                                         class="decisionStatus" />
-                                                            <ObjectStatus text="{inspection>UsageDecisionStatus}" 
-                                                                         state="{path: 'inspection>UsageDecisionStatus', formatter: '.formatStatus'}"
-                                                                         class="lotStatus" />
-                                                        </cells>
-                                                    </ColumnListItem>
-                                                </items>
-                                            </Table>
-                                        </VBox>
-                                    </f:content>
-                                </f:Card>
+                                                        </f:content>
+                                                    </f:Card>
+                                                </content>
+                                            </CustomListItem>
+                                        </List>
+                                    </VBox>
+                                </VBox>
                             </content>
                         </IconTabFilter>
 
                         <!-- Result Records Tab -->
                         <IconTabFilter text="Result Records" icon="sap-icon://document" key="resultRecords" iconColor="Critical">
                             <content>
-                                <f:Card class="contentCard">
-                                    <f:header>
-                                        <card:Header title="Result Records" 
-                                                   subtitle="Track inspection results and decisions" />
-                                    </f:header>
-                                    <f:content>
-                                        <VBox class="tableContainer">
-                                            <Toolbar class="tableToolbar">
-                                                <Title text="Result Records ({result>/results/length})" class="tableTitle" />
+                                <VBox class="resultsContainer">
+                                    <!-- Header Section -->
+                                    <f:Card class="headerCard animatedCard">
+                                        <f:header>
+                                            <card:Header title="Result Records" 
+                                                       subtitle="Track inspection results and decisions"
+                                                       iconSrc="sap-icon://document"
+                                                       iconDisplayShape="Circle"
+                                                       iconBackgroundColor="Accent2" />
+                                        </f:header>
+                                        <f:content>
+                                            <Toolbar class="modernToolbar">
+                                                <Title text="Result Records ({result>/results/length})" class="toolbarTitle" />
                                                 <ToolbarSpacer />
-                                                <SearchField width="200px" placeholder="Search results..." class="searchField" />
+                                                <SearchField width="250px" placeholder="Search results..." class="modernSearchField" />
                                                 <Button text="Refresh" 
                                                         icon="sap-icon://refresh" 
                                                         press="onRefreshResults"
-                                                        type="Transparent"
-                                                        class="refreshButton" />
+                                                        type="Emphasized"
+                                                        class="modernRefreshButton" />
                                             </Toolbar>
-                                            
-                                            <Table id="resultTable" 
-                                                   items="{result>/results}"
-                                                   growing="true"
-                                                   growingThreshold="20"
-                                                   class="modernTable"
-                                                   noDataText="No result records available. Click Refresh to load data.">
-                                                <columns>
-                                                    <Column width="12rem">
-                                                        <Text text="Lot Number" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="8rem">
-                                                        <Text text="Plant" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="12rem">
-                                                        <Text text="Inspector" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="10rem">
-                                                        <Text text="Recorded Date" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="8rem">
-                                                        <Text text="Decision" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="8rem">
-                                                        <Text text="Stock Code" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="12rem">
-                                                        <Text text="Category" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="10rem">
-                                                        <Text text="Status" class="columnHeader" />
-                                                    </Column>
-                                                </columns>
-                                                <items>
-                                                    <ColumnListItem class="tableRow">
-                                                        <cells>
-                                                            <Text text="{result>InspectionLotNumber}" class="lotNumber" />
-                                                            <Text text="{result>PlantCode}" class="plantCode" />
-                                                            <VBox>
-                                                                <Text text="{result>InspectorName}" class="inspectorName" />
-                                                                <core:Icon src="sap-icon://employee" size="0.75rem" color="#666" />
+                                        </f:content>
+                                    </f:Card>
+                                    
+                                    <!-- Grid Layout for Result Records -->
+                                    <VBox class="resultsGrid">
+                                        <List items="{result>/results}" 
+                                              class="resultsList"
+                                              noDataText="No result records available. Click Refresh to load data.">
+                                            <CustomListItem class="resultTile animatedTile">
+                                                <content>
+                                                    <f:Card class="resultCard">
+                                                        <f:header>
+                                                            <card:Header title="{result>InspectionLotNumber}"
+                                                                       subtitle="Plant: {result>PlantCode}"
+                                                                       iconSrc="sap-icon://document"
+                                                                       iconDisplayShape="Circle"
+                                                                       iconBackgroundColor="{path: 'result>UsageDecisionCode', formatter: '.getDecisionIconColor'}" />
+                                                        </f:header>
+                                                        <f:content>
+                                                            <VBox class="resultCardContent">
+                                                                <!-- Inspector and Date Info -->
+                                                                <HBox class="inspectorRow" justifyContent="SpaceBetween" alignItems="Center">
+                                                                    <VBox class="inspectorInfo">
+                                                                        <Label text="Inspector:" class="infoLabel" />
+                                                                        <HBox alignItems="Center">
+                                                                            <core:Icon src="sap-icon://employee" size="1.2rem" color="#1a73e8" class="infoIcon" />
+                                                                            <Text text="{result>InspectorName}" class="inspectorName" />
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                    <VBox class="dateInfo">
+                                                                        <Label text="Recorded Date:" class="infoLabel" />
+                                                                        <HBox alignItems="Center">
+                                                                            <core:Icon src="sap-icon://calendar" size="1rem" color="#28a745" class="infoIcon" />
+                                                                            <Text text="{path: 'result>RecordedDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy'}}" class="dateText" />
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                </HBox>
+                                                                
+                                                                <!-- Decision and Stock Info -->
+                                                                <HBox class="decisionRow" justifyContent="SpaceBetween">
+                                                                    <VBox class="decisionInfo">
+                                                                        <Label text="Usage Decision:" class="statusLabel" />
+                                                                        <ObjectStatus text="{path: 'result>UsageDecisionCode', formatter: '.formatUsageDecisionText'}" 
+                                                                                     state="{path: 'result>UsageDecisionCode', formatter: '.formatDecisionCode'}"
+                                                                                     icon="{path: 'result>UsageDecisionCode', formatter: '.getDecisionIcon'}"
+                                                                                     class="decisionStatus animatedStatus" />
+                                                                    </VBox>
+                                                                    <VBox class="stockInfo">
+                                                                        <Label text="Stock Code:" class="statusLabel" />
+                                                                        <HBox alignItems="Center">
+                                                                            <core:Icon src="sap-icon://inventory" size="1rem" color="#6f42c1" class="infoIcon" />
+                                                                            <Text text="{result>StockCode}" class="stockCode" />
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                </HBox>
+                                                                
+                                                                <!-- Category and Status -->
+                                                                <HBox class="categoryRow" justifyContent="SpaceBetween" alignItems="Center">
+                                                                    <VBox class="categoryInfo">
+                                                                        <Label text="Result Category:" class="statusLabel" />
+                                                                        <HBox alignItems="Center" class="categoryBox">
+                                                                            <core:Icon src="{path: 'result>ResultCategory', formatter: '.getCategoryIcon'}" 
+                                                                                      size="1.2rem" 
+                                                                                      color="{path: 'result>ResultCategory', formatter: '.getCategoryColor'}" 
+                                                                                      class="categoryIcon" />
+                                                                            <Text text="{result>ResultCategory}" class="categoryText" />
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                    <VBox class="recordingInfo">
+                                                                        <Label text="Recording Status:" class="statusLabel" />
+                                                                        <ObjectStatus text="{result>RecordingStatus}" 
+                                                                                     state="{path: 'result>RecordingStatus', formatter: '.formatRecordingStatus'}"
+                                                                                     icon="sap-icon://show"
+                                                                                     class="recordingStatus animatedStatus" />
+                                                                    </VBox>
+                                                                </HBox>
                                                             </VBox>
-                                                            <Text text="{path: 'result>RecordedDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy'}}" class="dateText" />
-                                                            <ObjectStatus text="{result>UsageDecisionCode}" 
-                                                                         state="{path: 'result>UsageDecisionCode', formatter: '.formatDecisionCode'}"
-                                                                         class="decisionStatus" />
-                                                            <Text text="{result>StockCode}" class="stockCode" />
-                                                            <VBox>
-                                                                <Text text="{result>ResultCategory}" class="categoryText" />
-                                                                <core:Icon src="{path: 'result>ResultCategory', formatter: '.getCategoryIcon'}" 
-                                                                          size="0.75rem" 
-                                                                          color="{path: 'result>ResultCategory', formatter: '.getCategoryColor'}" />
-                                                            </VBox>
-                                                            <ObjectStatus text="{result>RecordingStatus}" 
-                                                                         state="{path: 'result>RecordingStatus', formatter: '.formatRecordingStatus'}"
-                                                                         class="recordingStatus" />
-                                                        </cells>
-                                                    </ColumnListItem>
-                                                </items>
-                                            </Table>
-                                        </VBox>
-                                    </f:content>
-                                </f:Card>
+                                                        </f:content>
+                                                    </f:Card>
+                                                </content>
+                                            </CustomListItem>
+                                        </List>
+                                    </VBox>
+                                </VBox>
                             </content>
                         </IconTabFilter>
 
                         <!-- Usage Decision Tab -->
                         <IconTabFilter text="Usage Decision" icon="sap-icon://decision" key="usageDecision" iconColor="Neutral">
                             <content>
-                                <f:Card class="contentCard">
-                                    <f:header>
-                                        <card:Header title="Usage Decisions" 
-                                                   subtitle="Monitor usage decisions and validation status" />
-                                    </f:header>
-                                    <f:content>
-                                        <VBox class="tableContainer">
-                                            <Toolbar class="tableToolbar">
-                                                <Title text="Usage Decisions ({usage>/results/length})" class="tableTitle" />
+                                <VBox class="usageContainer">
+                                    <!-- Header Section -->
+                                    <f:Card class="headerCard animatedCard">
+                                        <f:header>
+                                            <card:Header title="Usage Decisions" 
+                                                       subtitle="Monitor usage decisions and validation status"
+                                                       iconSrc="sap-icon://decision"
+                                                       iconDisplayShape="Circle"
+                                                       iconBackgroundColor="Accent4" />
+                                        </f:header>
+                                        <f:content>
+                                            <Toolbar class="modernToolbar">
+                                                <Title text="Usage Decisions ({usage>/results/length})" class="toolbarTitle" />
                                                 <ToolbarSpacer />
-                                                <SearchField width="200px" placeholder="Search decisions..." class="searchField" />
+                                                <SearchField width="250px" placeholder="Search decisions..." class="modernSearchField" />
                                                 <Button text="Refresh" 
                                                         icon="sap-icon://refresh" 
                                                         press="onRefreshUsage"
-                                                        type="Transparent"
-                                                        class="refreshButton" />
+                                                        type="Emphasized"
+                                                        class="modernRefreshButton" />
                                             </Toolbar>
-                                            
-                                            <Table id="usageTable" 
-                                                   items="{usage>/results}"
-                                                   growing="true"
-                                                   growingThreshold="20"
-                                                   class="modernTable"
-                                                   noDataText="No usage decisions available. Click Refresh to load data.">
-                                                <columns>
-                                                    <Column width="12rem">
-                                                        <Text text="Lot Number" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="8rem">
-                                                        <Text text="Plant" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="10rem">
-                                                        <Text text="Lot Quantity" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="10rem">
-                                                        <Text text="Inspected Qty" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="8rem">
-                                                        <Text text="Decision" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="10rem">
-                                                        <Text text="Status" class="columnHeader" />
-                                                    </Column>
-                                                    <Column width="15rem">
-                                                        <Text text="Message" class="columnHeader" />
-                                                    </Column>
-                                                </columns>
-                                                <items>
-                                                    <ColumnListItem class="tableRow">
-                                                        <cells>
-                                                            <Text text="{usage>InspectionLotNumber}" class="lotNumber" />
-                                                            <Text text="{usage>Plant}" class="plantCode" />
-                                                            <Text text="{usage>LotQuantity}" class="quantityValue" />
-                                                            <Text text="{usage>InspectedQuantity}" class="quantityValue" />
-                                                            <ObjectStatus text="{usage>UsageDecisionCode}" 
-                                                                         state="{path: 'usage>UsageDecisionCode', formatter: '.formatDecisionCode'}"
-                                                                         class="decisionStatus" />
-                                                            <ObjectStatus text="{usage>DecisionStatus}" 
-                                                                         state="{path: 'usage>DecisionStatus', formatter: '.formatDecisionStatus'}"
-                                                                         class="usageStatus" />
-                                                            <VBox>
-                                                                <Text text="{usage>DecisionMessage}" class="messageText" />
-                                                                <core:Icon src="{path: 'usage>DecisionStatus', formatter: '.getStatusIcon'}" 
-                                                                          size="0.75rem" 
-                                                                          color="{path: 'usage>DecisionStatus', formatter: '.getStatusColor'}" />
+                                        </f:content>
+                                    </f:Card>
+                                    
+                                    <!-- Usage Decision Cards -->
+                                    <VBox class="usageGrid">
+                                        <List items="{usage>/results}" 
+                                              class="usageList"
+                                              noDataText="No usage decisions available. Click Refresh to load data.">
+                                            <CustomListItem class="usageTile animatedTile">
+                                                <content>
+                                                    <f:Card class="usageCard">
+                                                        <f:header>
+                                                            <card:Header title="{usage>InspectionLotNumber}"
+                                                                       subtitle="Plant: {usage>Plant}"
+                                                                       iconSrc="sap-icon://decision"
+                                                                       iconDisplayShape="Circle"
+                                                                       iconBackgroundColor="{path: 'usage>DecisionStatus', formatter: '.getUsageStatusColor'}" />
+                                                        </f:header>
+                                                        <f:content>
+                                                            <VBox class="usageCardContent">
+                                                                <!-- Quantity Comparison -->
+                                                                <HBox class="quantityComparison" justifyContent="SpaceBetween">
+                                                                    <VBox class="quantityBox lotQtyBox">
+                                                                        <Label text="Lot Quantity:" class="quantityLabel" />
+                                                                        <HBox alignItems="Center">
+                                                                            <core:Icon src="sap-icon://measuring-point" size="1.2rem" color="#17a2b8" class="quantityIcon" />
+                                                                            <Text text="{usage>LotQuantity}" class="quantityValue" />
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                    <core:Icon src="sap-icon://arrow-right" size="1.5rem" color="#6c757d" class="arrowIcon" />
+                                                                    <VBox class="quantityBox inspectedQtyBox">
+                                                                        <Label text="Inspected Quantity:" class="quantityLabel" />
+                                                                        <HBox alignItems="Center">
+                                                                            <core:Icon src="sap-icon://quality-issue" size="1.2rem" color="#28a745" class="quantityIcon" />
+                                                                            <Text text="{usage>InspectedQuantity}" class="quantityValue" />
+                                                                        </HBox>
+                                                                    </VBox>
+                                                                </HBox>
+                                                                
+                                                                <!-- Decision Information -->
+                                                                <VBox class="decisionSection">
+                                                                    <Label text="Usage Decision:" class="sectionLabel" />
+                                                                    <HBox class="decisionDisplay" alignItems="Center" justifyContent="Center">
+                                                                        <ObjectStatus text="{path: 'usage>UsageDecisionCode', formatter: '.formatUsageDecisionText'}" 
+                                                                                     state="{path: 'usage>UsageDecisionCode', formatter: '.formatDecisionCode'}"
+                                                                                     icon="{path: 'usage>UsageDecisionCode', formatter: '.getDecisionIcon'}"
+                                                                                     class="largeDecisionStatus animatedStatus" />
+                                                                    </HBox>
+                                                                </VBox>
+                                                                
+                                                                <!-- Status and Message -->
+                                                                <VBox class="statusSection">
+                                                                    <HBox class="statusRow" justifyContent="SpaceBetween" alignItems="Center">
+                                                                        <VBox class="statusInfo">
+                                                                            <Label text="Decision Status:" class="statusLabel" />
+                                                                            <ObjectStatus text="{usage>DecisionStatus}" 
+                                                                                         state="{path: 'usage>DecisionStatus', formatter: '.formatDecisionStatus'}"
+                                                                                         icon="{path: 'usage>DecisionStatus', formatter: '.getStatusIcon'}"
+                                                                                         class="usageStatus animatedStatus" />
+                                                                        </VBox>
+                                                                    </HBox>
+                                                                    
+                                                                    <VBox class="messageSection">
+                                                                        <Label text="Decision Message:" class="messageLabel" />
+                                                                        <Panel class="messagePanel" backgroundDesign="Transparent">
+                                                                            <content>
+                                                                                <HBox alignItems="Center" class="messageContent">
+                                                                                    <core:Icon src="{path: 'usage>DecisionStatus', formatter: '.getStatusIcon'}" 
+                                                                                              size="1rem" 
+                                                                                              color="{path: 'usage>DecisionStatus', formatter: '.getStatusColor'}" 
+                                                                                              class="messageIcon" />
+                                                                                    <Text text="{usage>DecisionMessage}" class="messageText" />
+                                                                                </HBox>
+                                                                            </content>
+                                                                        </Panel>
+                                                                    </VBox>
+                                                                </VBox>
                                                             </VBox>
-                                                        </cells>
-                                                    </ColumnListItem>
-                                                </items>
-                                            </Table>
-                                        </VBox>
-                                    </f:content>
-                                </f:Card>
+                                                        </f:content>
+                                                    </f:Card>
+                                                </content>
+                                            </CustomListItem>
+                                        </List>
+                                    </VBox>
+                                </VBox>
                             </content>
                         </IconTabFilter>
                         
