@@ -79,10 +79,7 @@
     margin-bottom: 1rem;
 }
 
-.logoIcon {
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
-    animation: logoFloat 6s ease-in-out infinite;
-}
+
 
 @keyframes logoFloat {
     0%, 100% {
@@ -137,6 +134,31 @@
 
 .contactIcon {
     color: rgba(255, 255, 255, 0.7);
+}
+
+.logoIcon {
+    color: #ffffff;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+    animation: logoFloat 6s ease-in-out infinite;
+}
+
+.welcomeIcon {
+    color: #1a73e8;
+    animation: welcomeIconPulse 3s ease-in-out infinite;
+}
+
+.inputIcon {
+    color: #64748b;
+    opacity: 0.7;
+}
+
+.securityIcon {
+    color: #28a745;
+    animation: securityPulse 2s ease-in-out infinite;
+}
+
+.statusIcon {
+    color: #28a745;
 }
 
 /* System Information */
@@ -212,9 +234,7 @@
     gap: 0.25rem;
 }
 
-.welcomeIcon {
-    animation: welcomeIconPulse 3s ease-in-out infinite;
-}
+
 
 @keyframes welcomeIconPulse {
     0%, 100% {
@@ -264,9 +284,7 @@
     margin-bottom: 0.5rem;
 }
 
-.inputIcon {
-    opacity: 0.7;
-}
+
 
 .inputLabel {
     color: #3c4043;
@@ -396,9 +414,7 @@
     border: 1px solid rgba(40, 167, 69, 0.2);
 }
 
-.securityIcon {
-    animation: securityPulse 2s ease-in-out infinite;
-}
+
 
 @keyframes securityPulse {
     0%, 100% {

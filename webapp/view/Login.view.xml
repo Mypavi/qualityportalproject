@@ -16,7 +16,7 @@
                     <VBox class="loginHeader" alignItems="Center">
                         <VBox class="companyLogo" alignItems="Center">
                             <HBox alignItems="Center" class="logoContainer">
-                                <core:Icon src="sap-icon://building" size="4rem" color="#ffffff" class="logoIcon" />
+                                <core:Icon src="sap-icon://building" size="4rem" class="logoIcon" />
                                 <VBox class="brandingText">
                                     <Title text="KAAR TECH" level="H1" class="companyName" />
                                     <Text text="TECHNOLOGIES PVT LTD" class="companySubtitle" />
@@ -41,7 +41,7 @@
                                 <!-- Welcome Message -->
                                 <VBox class="welcomeSection" alignItems="Center">
                                     <HBox alignItems="Center" class="welcomeHeader">
-                                        <core:Icon src="sap-icon://employee" size="2.5rem" color="#1a73e8" class="welcomeIcon" />
+                                        <core:Icon src="sap-icon://employee" size="2.5rem" class="welcomeIcon" />
                                         <VBox class="welcomeContent">
                                             <Title text="Employee Access" level="H2" class="welcomeTitle" />
                                             <Text text="Quality Management System" class="welcomeText" />
@@ -54,7 +54,7 @@
                                 <VBox class="formSection">
                                     <VBox class="inputGroup">
                                         <HBox alignItems="Center" class="labelContainer">
-                                            <core:Icon src="sap-icon://person-placeholder" size="1rem" color="#64748b" class="inputIcon" />
+                                            <core:Icon src="sap-icon://person-placeholder" size="1rem" class="inputIcon" />
                                             <Label text="SAP User ID" class="inputLabel" />
                                         </HBox>
                                         <Input id="userIdInput" 
@@ -67,7 +67,7 @@
                                     
                                     <VBox class="inputGroup">
                                         <HBox alignItems="Center" class="labelContainer">
-                                            <core:Icon src="sap-icon://locked" size="1rem" color="#64748b" class="inputIcon" />
+                                            <core:Icon src="sap-icon://locked" size="1rem" class="inputIcon" />
                                             <Label text="Password" class="inputLabel" />
                                         </HBox>
                                         <Input id="passwordInput" 
@@ -106,11 +106,11 @@
                                 <!-- Security Notice -->
                                 <VBox class="securitySection" alignItems="Center">
                                     <HBox alignItems="Center" class="securityNotice">
-                                        <core:Icon src="sap-icon://shield" size="1rem" color="#28a745" class="securityIcon" />
+                                        <core:Icon src="sap-icon://shield" size="1rem" class="securityIcon" />
                                         <Text text="256-bit SSL Encrypted | SOX Compliant" class="securityText" />
                                     </HBox>
                                     <HBox alignItems="Center" class="systemStatus">
-                                        <core:Icon src="sap-icon://status-positive" size="0.8rem" color="#28a745" />
+                                        <core:Icon src="sap-icon://status-positive" size="0.8rem" class="statusIcon" />
                                         <Text text="All systems operational" class="statusText" />
                                     </HBox>
                                 </VBox>
