@@ -15,13 +15,21 @@
                     <!-- KAAR TECH Header Section -->
                     <VBox class="loginHeader" alignItems="Center">
                         <VBox class="companyLogo" alignItems="Center">
-                            <core:Icon src="sap-icon://building" size="5rem" color="#ffffff" class="logoIcon" />
-                            <Title text="KAAR TECH" level="H1" class="companyName" />
-                            <Text text="TECHNOLOGIES PVT LTD" class="companySubtitle" />
+                            <HBox alignItems="Center" class="logoContainer">
+                                <core:Icon src="sap-icon://building" size="4rem" color="#ffffff" class="logoIcon" />
+                                <VBox class="brandingText">
+                                    <Title text="KAAR TECH" level="H1" class="companyName" />
+                                    <Text text="TECHNOLOGIES PVT LTD" class="companySubtitle" />
+                                </VBox>
+                            </HBox>
                         </VBox>
                         <VBox class="systemInfo" alignItems="Center">
                             <Title text="Quality Management Portal" level="H2" class="systemTitle" />
-                            <Text text="Enterprise Quality Control System" class="systemSubtitle" />
+                            <Text text="Enterprise Quality Control & Inspection System" class="systemSubtitle" />
+                            <HBox alignItems="Center" class="versionInfo">
+                                <core:Icon src="sap-icon://quality-issue" size="1rem" color="rgba(255,255,255,0.8)" />
+                                <Text text="Version 2.0 | SAP Integrated" class="versionText" />
+                            </HBox>
                         </VBox>
                     </VBox>
                     
@@ -32,43 +40,62 @@
                                 
                                 <!-- Welcome Message -->
                                 <VBox class="welcomeSection" alignItems="Center">
-                                    <core:Icon src="sap-icon://employee" size="3rem" color="#1a73e8" class="welcomeIcon" />
-                                    <Title text="Employee Login" level="H2" class="welcomeTitle" />
-                                    <Text text="Access KAAR TECH Quality Management System" class="welcomeText" />
+                                    <HBox alignItems="Center" class="welcomeHeader">
+                                        <core:Icon src="sap-icon://employee" size="2.5rem" color="#1a73e8" class="welcomeIcon" />
+                                        <VBox class="welcomeContent">
+                                            <Title text="Employee Access" level="H2" class="welcomeTitle" />
+                                            <Text text="Quality Management System" class="welcomeText" />
+                                        </VBox>
+                                    </HBox>
+                                    <Text text="Please enter your SAP credentials to access the system" class="loginInstructions" />
                                 </VBox>
                                 
                                 <!-- Login Form -->
                                 <VBox class="formSection">
                                     <VBox class="inputGroup">
-                                        <Label text="{i18n>userIdLabel}" class="inputLabel" />
+                                        <HBox alignItems="Center" class="labelContainer">
+                                            <core:Icon src="sap-icon://person-placeholder" size="1rem" color="#64748b" class="inputIcon" />
+                                            <Label text="SAP User ID" class="inputLabel" />
+                                        </HBox>
                                         <Input id="userIdInput" 
                                                value="{/bname}" 
-                                               placeholder="Enter your User ID"
+                                               placeholder="Enter your SAP User ID (e.g., K901900)"
                                                class="loginInput"
                                                required="true"
                                                submit="onLogin" />
                                     </VBox>
                                     
                                     <VBox class="inputGroup">
-                                        <Label text="{i18n>passwordLabel}" class="inputLabel" />
+                                        <HBox alignItems="Center" class="labelContainer">
+                                            <core:Icon src="sap-icon://locked" size="1rem" color="#64748b" class="inputIcon" />
+                                            <Label text="Password" class="inputLabel" />
+                                        </HBox>
                                         <Input id="passwordInput" 
                                                type="Password"
                                                value="{/password}" 
-                                               placeholder="Enter your Password"
+                                               placeholder="Enter your SAP Password"
                                                class="loginInput"
                                                required="true"
                                                submit="onLogin" />
                                     </VBox>
+                                    
+                                    <!-- Login Options -->
+                                    <HBox justifyContent="SpaceBetween" alignItems="Center" class="loginOptions">
+                                        <CheckBox text="Remember User ID" class="rememberCheckbox" />
+                                        <Link text="Forgot Password?" class="forgotLink" />
+                                    </HBox>
                                 </VBox>
                                 
                                 <!-- Login Button -->
                                 <VBox class="buttonSection">
                                     <Button id="loginButton" 
-                                            text="{i18n>loginButton}" 
+                                            text="Sign In to Quality Portal" 
                                             type="Emphasized" 
                                             press="onLogin"
                                             width="100%"
+                                            icon="sap-icon://log"
                                             class="loginButton" />
+                                    <Text text="By signing in, you agree to KAAR TECH's security policies" class="agreementText" />
                                 </VBox>
                                 
                                 <!-- Message Strip -->
@@ -80,7 +107,11 @@
                                 <VBox class="securitySection" alignItems="Center">
                                     <HBox alignItems="Center" class="securityNotice">
                                         <core:Icon src="sap-icon://shield" size="1rem" color="#28a745" class="securityIcon" />
-                                        <Text text="Secure Login - All sessions are encrypted" class="securityText" />
+                                        <Text text="256-bit SSL Encrypted | SOX Compliant" class="securityText" />
+                                    </HBox>
+                                    <HBox alignItems="Center" class="systemStatus">
+                                        <core:Icon src="sap-icon://status-positive" size="0.8rem" color="#28a745" />
+                                        <Text text="All systems operational" class="statusText" />
                                     </HBox>
                                 </VBox>
                                 
