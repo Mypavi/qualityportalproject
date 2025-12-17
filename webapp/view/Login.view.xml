@@ -1,0 +1,58 @@
+<mvc:View controllerName="qualityportal.controller.Login"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form">
+    <Page id="loginPage" title="Quality Portal - Login" class="sapUiContentPadding">
+        <content>
+            <VBox alignItems="Center" justifyContent="Center" class="sapUiLargeMarginTop">
+                <Panel headerText="Quality Engineer Login" class="sapUiResponsiveMargin" width="400px">
+                    <content>
+                        <f:SimpleForm
+                            editable="true"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="4"
+                            labelSpanL="4"
+                            labelSpanM="12"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="0"
+                            emptySpanL="0"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="1"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false">
+                            <f:content>
+                                <Label text="User ID:" />
+                                <Input id="userIdInput" 
+                                       value="{/bname}" 
+                                       placeholder="Enter User ID"
+                                       required="true" />
+                                
+                                <Label text="Password:" />
+                                <Input id="passwordInput" 
+                                       type="Password"
+                                       value="{/password}" 
+                                       placeholder="Enter Password"
+                                       required="true" />
+                            </f:content>
+                        </f:SimpleForm>
+                        
+                        <VBox class="sapUiMediumMarginTop">
+                            <Button id="loginButton" 
+                                    text="Login" 
+                                    type="Emphasized" 
+                                    press="onLogin"
+                                    width="100%" />
+                        </VBox>
+                        
+                        <MessageStrip id="messageStrip" 
+                                      visible="false" 
+                                      class="sapUiMediumMarginTop" />
+                    </content>
+                </Panel>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

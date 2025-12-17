@@ -16,21 +16,31 @@
       "toolsId": "5df97bb6-b5fb-4c50-9dd5-e94b45ab9295"
     },
     "dataSources": {
-      "ZQM_LOG_PR_CDS_VAN": {
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZQM_LOG_PR_CDS_VAN',Version='0001')/$value/",
-        "type": "ODataAnnotation",
-        "settings": {
-          "localUri": "localService/mainService/ZQM_LOG_PR_CDS_VAN.xml"
-        }
-      },
-      "mainService": {
+      "loginService": {
         "uri": "/sap/opu/odata/sap/ZQM_LOG_PR_CDS/",
         "type": "OData",
         "settings": {
-          "annotations": [
-            "ZQM_LOG_PR_CDS_VAN"
-          ],
-          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "inspectionService": {
+        "uri": "/sap/opu/odata/sap/ZQM_INSPECT_PR_CDS/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      },
+      "resultService": {
+        "uri": "/sap/opu/odata/sap/ZQM_RESULT_PR_CDS/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      },
+      "usageService": {
+        "uri": "/sap/opu/odata/sap/ZQM_US_PR_CDS/",
+        "type": "OData",
+        "settings": {
           "odataVersion": "2.0"
         }
       }
@@ -72,9 +82,24 @@
           "bundleName": "qualityportal.i18n.i18n"
         }
       },
-      "": {
-        "dataSource": "mainService",
-        "preload": true,
+      "login": {
+        "dataSource": "loginService",
+        "preload": false,
+        "settings": {}
+      },
+      "inspection": {
+        "dataSource": "inspectionService",
+        "preload": false,
+        "settings": {}
+      },
+      "result": {
+        "dataSource": "resultService",
+        "preload": false,
+        "settings": {}
+      },
+      "usage": {
+        "dataSource": "usageService",
+        "preload": false,
         "settings": {}
       }
     },
@@ -99,17 +124,28 @@
       },
       "routes": [
         {
-          "name": "RouteView1",
-          "pattern": ":?query:",
+          "name": "login",
+          "pattern": "",
           "target": [
-            "TargetView1"
+            "login"
+          ]
+        },
+        {
+          "name": "dashboard",
+          "pattern": "dashboard",
+          "target": [
+            "dashboard"
           ]
         }
       ],
       "targets": {
-        "TargetView1": {
-          "id": "View1",
-          "name": "View1"
+        "login": {
+          "id": "Login",
+          "name": "Login"
+        },
+        "dashboard": {
+          "id": "Dashboard",
+          "name": "Dashboard"
         }
       }
     },

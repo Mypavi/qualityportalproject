@@ -1,0 +1,240 @@
+<mvc:View controllerName="qualityportal.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="dashboardPage" title="Quality Management Dashboard" showNavButton="true" navButtonPress="onLogout">
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://log" press="onLogout" tooltip="Logout" />
+                </contentLeft>
+                <contentMiddle>
+                    <Title text="Quality Management Portal" />
+                </contentMiddle>
+                <contentRight>
+                    <Text text="Welcome, {user>/bname}" class="sapUiMediumMarginEnd" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+        
+        <content>
+            <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+                
+                <!-- Inspection Lots Tab -->
+                <items>
+                    <IconTabFilter text="Inspection Lots" icon="sap-icon://inspection" key="inspectionLots">
+                        <content>
+                            <VBox class="sapUiMediumMargin">
+                                <!-- Quality Metrics -->
+                                <Panel headerText="Quality Metrics" class="sapUiResponsiveMargin">
+                                    <content>
+                                        <HBox class="qualityMetrics sapUiMediumMargin">
+                                            <VBox class="metricTile">
+                                                <Text text="{metrics>/totalLots}" class="metricValue" />
+                                                <Text text="Total Lots" class="metricLabel" />
+                                            </VBox>
+                                            <VBox class="metricTile">
+                                                <Text text="{metrics>/pendingLots}" class="metricValue" />
+                                                <Text text="Pending" class="metricLabel" />
+                                            </VBox>
+                                            <VBox class="metricTile">
+                                                <Text text="{metrics>/approvedLots}" class="metricValue" />
+                                                <Text text="Approved" class="metricLabel" />
+                                            </VBox>
+                                            <VBox class="metricTile">
+                                                <Text text="{metrics>/rejectedLots}" class="metricValue" />
+                                                <Text text="Rejected" class="metricLabel" />
+                                            </VBox>
+                                        </HBox>
+                                    </content>
+                                </Panel>
+                                
+                                <Panel headerText="Inspection Lots" class="sapUiResponsiveMargin">
+                                    <content>
+                                        <Table id="inspectionTable" 
+                                               items="{inspection>/ZQM_INSPECT_PR}"
+                                               growing="true"
+                                               growingThreshold="20"
+                                               mode="SingleSelection"
+                                               selectionChange="onInspectionSelect">
+                                            <headerToolbar>
+                                                <Toolbar>
+                                                    <Title text="Inspection Lots ({inspection>/ZQM_INSPECT_PR/length})" />
+                                                    <ToolbarSpacer />
+                                                    <Button text="Refresh" icon="sap-icon://refresh" press="onRefreshInspection" />
+                                                </Toolbar>
+                                            </headerToolbar>
+                                            <columns>
+                                                <Column>
+                                                    <Text text="Lot Number" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Plant" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Material" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Actual Qty" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Inspected Qty" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Decision Code" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Status" />
+                                                </Column>
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem press="onInspectionItemPress">
+                                                    <cells>
+                                                        <Text text="{inspection>InspectionLotNumber}" />
+                                                        <Text text="{inspection>Plant} - {inspection>PlantDescription}" />
+                                                        <Text text="{inspection>SelectedMaterial}" />
+                                                        <Text text="{inspection>ActualQuantity} {inspection>UnitOfMeasure}" />
+                                                        <Text text="{inspection>InspectedQuantity} {inspection>UnitOfMeasure}" />
+                                                        <Text text="{inspection>UsageDecisionCode}" />
+                                                        <ObjectStatus text="{inspection>UsageDecisionStatus}" 
+                                                                     state="{path: 'inspection>UsageDecisionStatus', formatter: '.formatStatus'}" />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </content>
+                                </Panel>
+                            </VBox>
+                        </content>
+                    </IconTabFilter>
+
+                    <!-- Result Records Tab -->
+                    <IconTabFilter text="Result Records" icon="sap-icon://document" key="resultRecords">
+                        <content>
+                            <VBox class="sapUiMediumMargin">
+                                <Panel headerText="Result Records" class="sapUiResponsiveMargin">
+                                    <content>
+                                        <Table id="resultTable" 
+                                               items="{result>/ZQM_RESULT_PR}"
+                                               growing="true"
+                                               growingThreshold="20">
+                                            <headerToolbar>
+                                                <Toolbar>
+                                                    <Title text="Result Records ({result>/ZQM_RESULT_PR/length})" />
+                                                    <ToolbarSpacer />
+                                                    <Button text="Refresh" icon="sap-icon://refresh" press="onRefreshResults" />
+                                                </Toolbar>
+                                            </headerToolbar>
+                                            <columns>
+                                                <Column>
+                                                    <Text text="Lot Number" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Plant" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Inspector" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Recorded Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Decision Code" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Stock Code" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Category" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Status" />
+                                                </Column>
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem>
+                                                    <cells>
+                                                        <Text text="{result>InspectionLotNumber}" />
+                                                        <Text text="{result>PlantCode}" />
+                                                        <Text text="{result>InspectorName}" />
+                                                        <Text text="{path: 'result>RecordedDate', type: 'sap.ui.model.odata.type.DateTime'}" />
+                                                        <Text text="{result>UsageDecisionCode}" />
+                                                        <Text text="{result>StockCode}" />
+                                                        <Text text="{result>ResultCategory}" />
+                                                        <ObjectStatus text="{result>RecordingStatus}" 
+                                                                     state="{path: 'result>RecordingStatus', formatter: '.formatRecordingStatus'}" />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </content>
+                                </Panel>
+                            </VBox>
+                        </content>
+                    </IconTabFilter>
+
+                    <!-- Usage Decision Tab -->
+                    <IconTabFilter text="Usage Decision" icon="sap-icon://decision" key="usageDecision">
+                        <content>
+                            <VBox class="sapUiMediumMargin">
+                                <Panel headerText="Usage Decisions" class="sapUiResponsiveMargin">
+                                    <content>
+                                        <Table id="usageTable" 
+                                               items="{usage>/ZQM_US_PR}"
+                                               growing="true"
+                                               growingThreshold="20">
+                                            <headerToolbar>
+                                                <Toolbar>
+                                                    <Title text="Usage Decisions ({usage>/ZQM_US_PR/length})" />
+                                                    <ToolbarSpacer />
+                                                    <Button text="Refresh" icon="sap-icon://refresh" press="onRefreshUsage" />
+                                                </Toolbar>
+                                            </headerToolbar>
+                                            <columns>
+                                                <Column>
+                                                    <Text text="Lot Number" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Plant" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Lot Quantity" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Inspected Quantity" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Decision Code" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Decision Status" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Message" />
+                                                </Column>
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem>
+                                                    <cells>
+                                                        <Text text="{usage>InspectionLotNumber}" />
+                                                        <Text text="{usage>Plant}" />
+                                                        <Text text="{usage>LotQuantity}" />
+                                                        <Text text="{usage>InspectedQuantity}" />
+                                                        <Text text="{usage>UsageDecisionCode}" />
+                                                        <ObjectStatus text="{usage>DecisionStatus}" 
+                                                                     state="{path: 'usage>DecisionStatus', formatter: '.formatDecisionStatus'}" />
+                                                        <Text text="{usage>DecisionMessage}" />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </content>
+                                </Panel>
+                            </VBox>
+                        </content>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>

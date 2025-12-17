@@ -1,1 +1,80 @@
-/* Enter your custom styles here */
+/* Quality Portal Custom Styles */
+
+/* Login Page Styles */
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.loginPanel {
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard Styles */
+.dashboardHeader {
+    background: linear-gradient(135deg, #0070f3 0%, #005bb5 100%);
+    color: white;
+}
+
+.statusSuccess {
+    color: #107e3e;
+    font-weight: bold;
+}
+
+.statusWarning {
+    color: #df6e0c;
+    font-weight: bold;
+}
+
+.statusError {
+    color: #bb0000;
+    font-weight: bold;
+}
+
+/* Table Styles */
+.inspectionTable .sapMListTblRow:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.qualityMetrics {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+}
+
+.metricTile {
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    min-width: 120px;
+}
+
+.metricValue {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0070f3;
+}
+
+.metricLabel {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .loginPanel {
+        margin: 1rem;
+    }
+    
+    .qualityMetrics {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
