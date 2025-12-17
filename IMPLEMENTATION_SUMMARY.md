@@ -18,17 +18,19 @@ Successfully implemented a comprehensive Quality Management Portal based on the 
 - **Data Refresh**: Manual and automatic data loading
 
 ### 3. Inspection Lots Management
+- **FRS-Compliant Table Format**: Professional table layout as per requirements
 - **Complete Data Display**: All fields from FRS implemented
   - Inspection Lot Number
   - Plant and Plant Description
   - Material Information
   - Actual vs Inspected Quantities
-  - Usage Decision Code
+  - Usage Decision Code (clearly displayed as "Approved" or "Rejected")
   - Status Tracking
 - **Interactive Features**:
   - Detailed inspection lot dialog
   - Cross-navigation to related records
   - Status-based filtering
+- **Usage Decision Display**: Clear "Approved/Rejected" status as per FRS note
 
 ### 4. Result Records Tracking
 - **Comprehensive Display**:
