@@ -1,57 +1,91 @@
 <mvc:View controllerName="qualityportal.controller.Login"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:f="sap.ui.layout.form">
-    <Page id="loginPage" title="Quality Portal - Login" class="sapUiContentPadding">
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    
+    <Page id="loginPage" class="loginPage">
         <content>
-            <VBox alignItems="Center" justifyContent="Center" class="sapUiLargeMarginTop">
-                <Panel headerText="Quality Engineer Login" class="sapUiResponsiveMargin" width="400px">
-                    <content>
-                        <f:SimpleForm
-                            editable="true"
-                            layout="ResponsiveGridLayout"
-                            labelSpanXL="4"
-                            labelSpanL="4"
-                            labelSpanM="12"
-                            labelSpanS="12"
-                            adjustLabelSpan="false"
-                            emptySpanXL="0"
-                            emptySpanL="0"
-                            emptySpanM="0"
-                            emptySpanS="0"
-                            columnsXL="1"
-                            columnsL="1"
-                            columnsM="1"
-                            singleContainerFullSize="false">
-                            <f:content>
-                                <Label text="User ID:" />
-                                <Input id="userIdInput" 
-                                       value="{/bname}" 
-                                       placeholder="Enter User ID"
-                                       required="true" />
+            <!-- Background Container -->
+            <VBox class="loginBackground" height="100vh" alignItems="Center" justifyContent="Center">
+                
+                <!-- Main Login Container -->
+                <VBox class="loginContainer" alignItems="Center">
+                    
+                    <!-- Header Section -->
+                    <VBox class="loginHeader" alignItems="Center">
+                        <core:Icon src="sap-icon://quality-issue" size="4rem" color="#0070f3" class="loginIcon" />
+                        <Title text="{i18n>appTitle}" level="H1" class="loginTitle" />
+                        <Text text="Quality Management System" class="loginSubtitle" />
+                    </VBox>
+                    
+                    <!-- Login Card -->
+                    <Panel class="loginPanel" width="420px">
+                        <content>
+                            <VBox class="loginForm">
                                 
-                                <Label text="Password:" />
-                                <Input id="passwordInput" 
-                                       type="Password"
-                                       value="{/password}" 
-                                       placeholder="Enter Password"
-                                       required="true" />
-                            </f:content>
-                        </f:SimpleForm>
-                        
-                        <VBox class="sapUiMediumMarginTop">
-                            <Button id="loginButton" 
-                                    text="Login" 
-                                    type="Emphasized" 
-                                    press="onLogin"
-                                    width="100%" />
-                        </VBox>
-                        
-                        <MessageStrip id="messageStrip" 
-                                      visible="false" 
-                                      class="sapUiMediumMarginTop" />
-                    </content>
-                </Panel>
+                                <!-- Welcome Message -->
+                                <VBox class="welcomeSection" alignItems="Center">
+                                    <Title text="Welcome Back" level="H2" class="welcomeTitle" />
+                                    <Text text="Please sign in to your account" class="welcomeText" />
+                                </VBox>
+                                
+                                <!-- Login Form -->
+                                <VBox class="formSection">
+                                    <VBox class="inputGroup">
+                                        <Label text="{i18n>userIdLabel}" class="inputLabel" />
+                                        <Input id="userIdInput" 
+                                               value="{/bname}" 
+                                               placeholder="Enter your User ID"
+                                               class="loginInput"
+                                               required="true"
+                                               submit="onLogin" />
+                                    </VBox>
+                                    
+                                    <VBox class="inputGroup">
+                                        <Label text="{i18n>passwordLabel}" class="inputLabel" />
+                                        <Input id="passwordInput" 
+                                               type="Password"
+                                               value="{/password}" 
+                                               placeholder="Enter your Password"
+                                               class="loginInput"
+                                               required="true"
+                                               submit="onLogin" />
+                                    </VBox>
+                                </VBox>
+                                
+                                <!-- Login Button -->
+                                <VBox class="buttonSection">
+                                    <Button id="loginButton" 
+                                            text="{i18n>loginButton}" 
+                                            type="Emphasized" 
+                                            press="onLogin"
+                                            width="100%"
+                                            class="loginButton" />
+                                </VBox>
+                                
+                                <!-- Message Strip -->
+                                <MessageStrip id="messageStrip" 
+                                              visible="false" 
+                                              class="messageStrip" />
+                                
+                                <!-- Demo Credentials -->
+                                <VBox class="demoSection" alignItems="Center">
+                                    <Text text="Demo Credentials:" class="demoLabel" />
+                                    <Text text="User ID: K901900 | Password: 12345" class="demoCredentials" />
+                                </VBox>
+                                
+                            </VBox>
+                        </content>
+                    </Panel>
+                    
+                    <!-- Footer -->
+                    <VBox class="loginFooter" alignItems="Center">
+                        <Text text="© 2025 SAP Quality Management Portal" class="footerText" />
+                        <Text text="Powered by SAP UI5 & Fiori Design" class="footerSubtext" />
+                    </VBox>
+                    
+                </VBox>
             </VBox>
         </content>
     </Page>

@@ -213,6 +213,66 @@ sap.ui.define([
             }
         },
 
+        formatDecisionCode(sCode) {
+            switch (sCode) {
+                case "A":
+                    return "Success";
+                case "R":
+                case "R2":
+                    return "Error";
+                default:
+                    return "None";
+            }
+        },
+
+        getCategoryIcon(sCategory) {
+            switch (sCategory) {
+                case "Unrestricted Stock":
+                    return "sap-icon://accept";
+                case "Block Stock":
+                    return "sap-icon://decline";
+                case "Production Stock":
+                    return "sap-icon://factory";
+                default:
+                    return "sap-icon://question-mark";
+            }
+        },
+
+        getCategoryColor(sCategory) {
+            switch (sCategory) {
+                case "Unrestricted Stock":
+                    return "#107e3e";
+                case "Block Stock":
+                    return "#bb0000";
+                case "Production Stock":
+                    return "#0070f3";
+                default:
+                    return "#666";
+            }
+        },
+
+        getStatusIcon(sStatus) {
+            switch (sStatus) {
+                case "Allowed":
+                    return "sap-icon://accept";
+                case "Blocked":
+                    return "sap-icon://decline";
+                default:
+                    return "sap-icon://pending";
+            }
+        },
+
+        getStatusColor(sStatus) {
+            switch (sStatus) {
+                case "Allowed":
+                    return "#107e3e";
+                case "Blocked":
+                    return "#bb0000";
+                default:
+                    return "#e9730c";
+            }
+        },
+
         onLogout() {
             // Clear user session
             this.getOwnerComponent().setModel(null, "user");

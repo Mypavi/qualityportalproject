@@ -1,62 +1,138 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
     <Dialog id="inspectionDetailsDialog" 
             title="Inspection Lot Details" 
-            contentWidth="600px"
+            contentWidth="700px"
+            contentHeight="600px"
             resizable="true"
-            draggable="true">
+            draggable="true"
+            class="inspectionDialog">
         <content>
-            <f:SimpleForm editable="false" 
-                         layout="ResponsiveGridLayout"
-                         labelSpanXL="4" 
-                         labelSpanL="4" 
-                         labelSpanM="4" 
-                         labelSpanS="12"
-                         adjustLabelSpan="false"
-                         emptySpanXL="0" 
-                         emptySpanL="0" 
-                         emptySpanM="0" 
-                         emptySpanS="0"
-                         columnsXL="2" 
-                         columnsL="2" 
-                         columnsM="1"
-                         singleContainerFullSize="false">
-                <f:content>
-                    <Label text="Lot Number:" />
-                    <Text text="{InspectionLotNumber}" />
-                    
-                    <Label text="Plant:" />
-                    <Text text="{Plant} - {PlantDescription}" />
-                    
-                    <Label text="Material:" />
-                    <Text text="{SelectedMaterial}" />
-                    
-                    <Label text="Lot Origin:" />
-                    <Text text="{LotOrigin}" />
-                    
-                    <Label text="Actual Quantity:" />
-                    <Text text="{ActualQuantity} {UnitOfMeasure}" />
-                    
-                    <Label text="Inspected Quantity:" />
-                    <Text text="{InspectedQuantity} {UnitOfMeasure}" />
-                    
-                    <Label text="Usage Decision Code:" />
-                    <Text text="{UsageDecisionCode}" />
-                    
-                    <Label text="Status:" />
+            <VBox class="dialogContent">
+                
+                <!-- Header Section -->
+                <VBox class="dialogHeader" alignItems="Center">
+                    <core:Icon src="sap-icon://inspection" size="3rem" color="#1a73e8" />
+                    <Title text="Lot #{InspectionLotNumber}" level="H2" class="dialogTitle" />
                     <ObjectStatus text="{UsageDecisionStatus}" 
-                                 state="{path: 'UsageDecisionStatus', formatter: '.formatStatus'}" />
-                </f:content>
-            </f:SimpleForm>
+                                 state="{path: 'UsageDecisionStatus', formatter: '.formatStatus'}"
+                                 class="dialogStatus" />
+                </VBox>
+                
+                <!-- Details Grid -->
+                <VBox class="dialogBody">
+                    <f:SimpleForm editable="false" 
+                                 layout="ResponsiveGridLayout"
+                                 labelSpanXL="4" 
+                                 labelSpanL="4" 
+                                 labelSpanM="4" 
+                                 labelSpanS="12"
+                                 adjustLabelSpan="false"
+                                 emptySpanXL="0" 
+                                 emptySpanL="0" 
+                                 emptySpanM="0" 
+                                 emptySpanS="0"
+                                 columnsXL="2" 
+                                 columnsL="2" 
+                                 columnsM="1"
+                                 singleContainerFullSize="false"
+                                 class="detailsForm">
+                        <f:content>
+                            
+                            <!-- Basic Information -->
+                            <core:Title text="Basic Information" class="sectionTitle" />
+                            <Text text="" />
+                            
+                            <Label text="Lot Number:" class="detailLabel" />
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://number-sign" size="1rem" color="#666" class="fieldIcon" />
+                                <Text text="{InspectionLotNumber}" class="detailValue" />
+                            </HBox>
+                            
+                            <Label text="Plant:" class="detailLabel" />
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://factory" size="1rem" color="#666" class="fieldIcon" />
+                                <VBox>
+                                    <Text text="{Plant}" class="detailValue" />
+                                    <Text text="{PlantDescription}" class="detailSubvalue" />
+                                </VBox>
+                            </HBox>
+                            
+                            <Label text="Material:" class="detailLabel" />
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://product" size="1rem" color="#666" class="fieldIcon" />
+                                <Text text="{SelectedMaterial}" class="detailValue" />
+                            </HBox>
+                            
+                            <Label text="Lot Origin:" class="detailLabel" />
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://source-code" size="1rem" color="#666" class="fieldIcon" />
+                                <Text text="{LotOrigin}" class="detailValue" />
+                            </HBox>
+                            
+                            <!-- Quantity Information -->
+                            <core:Title text="Quantity Information" class="sectionTitle" />
+                            <Text text="" />
+                            
+                            <Label text="Actual Quantity:" class="detailLabel" />
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://measuring-point" size="1rem" color="#666" class="fieldIcon" />
+                                <VBox>
+                                    <Text text="{ActualQuantity}" class="quantityValue" />
+                                    <Text text="{UnitOfMeasure}" class="unitValue" />
+                                </VBox>
+                            </HBox>
+                            
+                            <Label text="Inspected Quantity:" class="detailLabel" />
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://quality-issue" size="1rem" color="#666" class="fieldIcon" />
+                                <VBox>
+                                    <Text text="{InspectedQuantity}" class="quantityValue" />
+                                    <Text text="{UnitOfMeasure}" class="unitValue" />
+                                </VBox>
+                            </HBox>
+                            
+                            <!-- Decision Information -->
+                            <core:Title text="Decision Information" class="sectionTitle" />
+                            <Text text="" />
+                            
+                            <Label text="Usage Decision Code:" class="detailLabel" />
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://decision" size="1rem" color="#666" class="fieldIcon" />
+                                <ObjectStatus text="{UsageDecisionCode}" 
+                                             state="{path: 'UsageDecisionCode', formatter: '.formatDecisionCode'}"
+                                             class="decisionCodeStatus" />
+                            </HBox>
+                            
+                            <Label text="Status:" class="detailLabel" />
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://status-positive" size="1rem" color="#666" class="fieldIcon" />
+                                <ObjectStatus text="{UsageDecisionStatus}" 
+                                             state="{path: 'UsageDecisionStatus', formatter: '.formatStatus'}"
+                                             class="statusIndicator" />
+                            </HBox>
+                            
+                        </f:content>
+                    </f:SimpleForm>
+                </VBox>
+                
+            </VBox>
         </content>
         <buttons>
             <Button text="View Results" 
+                    icon="sap-icon://document"
                     type="Emphasized" 
                     press="onViewResults" 
-                    visible="{path: 'UsageDecisionStatus', formatter: '.isDecisionMade'}" />
+                    visible="{path: 'UsageDecisionStatus', formatter: '.isDecisionMade'}"
+                    class="actionButton" />
             <Button text="View Usage Decision" 
+                    icon="sap-icon://decision"
                     press="onViewUsageDecision" 
-                    visible="{path: 'UsageDecisionStatus', formatter: '.isDecisionMade'}" />
-            <Button text="Close" press="onCloseDialog" />
+                    visible="{path: 'UsageDecisionStatus', formatter: '.isDecisionMade'}"
+                    class="actionButton" />
+            <Button text="Close" 
+                    icon="sap-icon://decline"
+                    press="onCloseDialog"
+                    class="closeButton" />
         </buttons>
     </Dialog>
 </core:FragmentDefinition>
