@@ -25,10 +25,10 @@
                         </VBox>
                         <VBox class="systemInfo" alignItems="Center">
                             <Title text="Quality Management Portal" level="H2" class="systemTitle" />
-                            <Text text="Enterprise Quality Control & Inspection System" class="systemSubtitle" />
+                            <Text text="Enterprise Quality Control and Inspection System" class="systemSubtitle" />
                             <HBox alignItems="Center" class="versionInfo">
                                 <core:Icon src="sap-icon://quality-issue" size="1rem" class="versionIcon" />
-                                <Text text="Version 2.0 | SAP Integrated" class="versionText" />
+                                <Text text="Version 2.0 - SAP Integrated" class="versionText" />
                             </HBox>
                         </VBox>
                     </VBox>
@@ -59,7 +59,7 @@
                                         </HBox>
                                         <Input id="userIdInput" 
                                                value="{/bname}" 
-                                               placeholder="Enter your SAP User ID (e.g., K901900)"
+                                               placeholder="Enter your SAP User ID"
                                                class="loginInput"
                                                required="true"
                                                submit="onLogin" />
@@ -95,7 +95,7 @@
                                             width="100%"
                                             icon="sap-icon://log"
                                             class="loginButton" />
-                                    <Text text="By signing in, you agree to KAAR TECH's security policies" class="agreementText" />
+                                    <Text text="By signing in, you agree to KAAR TECH security policies" class="agreementText" />
                                 </VBox>
                                 
                                 <!-- Message Strip -->
@@ -107,7 +107,7 @@
                                 <VBox class="securitySection" alignItems="Center">
                                     <HBox alignItems="Center" class="securityNotice">
                                         <core:Icon src="sap-icon://shield" size="1rem" class="securityIcon" />
-                                        <Text text="256-bit SSL Encrypted | SOX Compliant" class="securityText" />
+                                        <Text text="256-bit SSL Encrypted - SOX Compliant" class="securityText" />
                                     </HBox>
                                     <HBox alignItems="Center" class="systemStatus">
                                         <core:Icon src="sap-icon://status-positive" size="0.8rem" class="statusIcon" />
@@ -121,12 +121,12 @@
                     
                     <!-- KAAR TECH Footer -->
                     <VBox class="loginFooter" alignItems="Center">
-                        <Text text="© 2025 KAAR TECH TECHNOLOGIES PVT LTD" class="footerText" />
+                        <Text text="Copyright 2025 KAAR TECH TECHNOLOGIES PVT LTD" class="footerText" />
                         <Text text="Powered by SAP UI5 Enterprise Platform" class="footerSubtext" />
                         <HBox class="contactInfo" alignItems="Center">
                             <core:Icon src="sap-icon://phone" size="0.8rem" class="contactIcon" />
                             <Text text="+91-XXX-XXX-XXXX" class="contactText" />
-                            <Text text="|" class="separator" />
+                            <Text text="•" class="separator" />
                             <core:Icon src="sap-icon://email" size="0.8rem" class="contactIcon" />
                             <Text text="support@kaartech.com" class="contactText" />
                         </HBox>
