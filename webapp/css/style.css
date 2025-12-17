@@ -131,6 +131,14 @@
     font-weight: 500;
 }
 
+.versionIcon {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contactIcon {
+    color: rgba(255, 255, 255, 0.7);
+}
+
 /* System Information */
 .systemInfo {
     gap: 0.5rem;

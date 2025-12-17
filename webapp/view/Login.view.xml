@@ -27,7 +27,7 @@
                             <Title text="Quality Management Portal" level="H2" class="systemTitle" />
                             <Text text="Enterprise Quality Control & Inspection System" class="systemSubtitle" />
                             <HBox alignItems="Center" class="versionInfo">
-                                <core:Icon src="sap-icon://quality-issue" size="1rem" color="rgba(255,255,255,0.8)" />
+                                <core:Icon src="sap-icon://quality-issue" size="1rem" class="versionIcon" />
                                 <Text text="Version 2.0 | SAP Integrated" class="versionText" />
                             </HBox>
                         </VBox>
@@ -124,10 +124,10 @@
                         <Text text="© 2025 KAAR TECH TECHNOLOGIES PVT LTD" class="footerText" />
                         <Text text="Powered by SAP UI5 Enterprise Platform" class="footerSubtext" />
                         <HBox class="contactInfo" alignItems="Center">
-                            <core:Icon src="sap-icon://phone" size="0.8rem" color="rgba(255,255,255,0.7)" />
+                            <core:Icon src="sap-icon://phone" size="0.8rem" class="contactIcon" />
                             <Text text="+91-XXX-XXX-XXXX" class="contactText" />
                             <Text text="|" class="separator" />
-                            <core:Icon src="sap-icon://email" size="0.8rem" color="rgba(255,255,255,0.7)" />
+                            <core:Icon src="sap-icon://email" size="0.8rem" class="contactIcon" />
                             <Text text="support@kaartech.com" class="contactText" />
                         </HBox>
                     </VBox>
